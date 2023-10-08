@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { OUTPUT_MESSAGE } = require('../constants/messages');
+const { OUTPUT_MESSAGE_METHOD } = require('../constants/messages');
 
 /**
  * '출력'의 역할을 수행하는 View Layer
@@ -18,6 +18,17 @@ const OutputView = {
    */
   printError(message) {
     this.print(message);
+  },
+
+  /**
+   * 발행된 로또들을 출력하는 메서드
+   * @param {object} printLottoInfo - 구매한 로또 번호 갯수와 로또에 대한 정보
+   * @property {number} lottoCount - 로또 생성 갯수
+   * @property {number[][]} lottoNumbers - 발행된 로또들의 로또 번호
+   */
+  printGenerationLottoNumbers({ lottoCount, lottoNumbers }) {
+    this.print(OUTPUT_MESSAGE_METHOD.buyLottos(lottoCount));
+    this.print(OUTPUT_MESSAGE_METHOD.lottoNumbers(lottoNumbers));
   },
 };
 

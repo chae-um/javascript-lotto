@@ -1,7 +1,16 @@
 const { GAME_TERMS } = require('./gameTerms');
+const { SYMBOLS } = require('./symbols');
 
 const INPUT_MESSAGE = Object.freeze({
   buyLottoPrice: '구입금액을 입력해 주세요.\n',
+});
+
+const OUTPUT_MESSAGE_METHOD = Object.freeze({
+  buyLottos: (lottoCount) => `\n${lottoCount}개를 구매했습니다.`,
+  lottoNumbers: (lottoNumbers) =>
+    lottoNumbers
+      .map((lottoNumber) => `[${lottoNumber.join(`${SYMBOLS.comma} `)}]`)
+      .join(SYMBOLS.newLine),
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -15,4 +24,4 @@ const ERROR_MESSAGE = Object.freeze({
   }),
 });
 
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE };
+module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE_METHOD };

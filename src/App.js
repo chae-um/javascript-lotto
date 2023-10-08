@@ -30,10 +30,14 @@ class App {
     return this.#generationLottoService.generateLottoNumbers(buyLottoPrice);
   }
 
+  #askPrintGenerationLottoNumbers({ lottoCount, lottoNumbers }) {
+    this.#outputView.printGenerationLottoNumbers({ lottoCount, lottoNumbers });
+  }
+
   *#processGame() {
     const buyLottoPrice = yield* this.#askBuyLottoPrice();
-    const lottos = this.#askGenerationLottos(buyLottoPrice);
-    console.log(lottos);
+    const { lottoCount, lottoNumbers } = this.#askGenerationLottos(buyLottoPrice);
+    this.#askPrintGenerationLottoNumbers({ lottoCount, lottoNumbers });
   }
 
   *#run() {
