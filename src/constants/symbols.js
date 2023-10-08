@@ -1,6 +1,8 @@
 const SYMBOLS = Object.freeze({
-  EMPTY_STRING: '',
-  SPACE: ' ',
+  emptyString: '',
+  space: ' ',
+  newLine: '\n',
+  comma: ',',
 });
 
 module.exports = { SYMBOLS };

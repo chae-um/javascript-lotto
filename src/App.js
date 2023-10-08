@@ -2,16 +2,14 @@ const { Console } = require('@woowacourse/mission-utils');
 const { runGenerator } = require('./utils/runGenerator');
 const { InputView, OutputView } = require('./views');
 const { BuyLottoPriceValidator } = require('./validator');
+const { GenerationLottoService } = require('./services');
 
 class App {
-  #inputView;
+  #inputView = InputView;
 
-  #outputView;
+  #outputView = OutputView;
 
-  constructor() {
-    this.#inputView = InputView;
-    this.#outputView = OutputView;
-  }
+  #generationLottoService = GenerationLottoService;
 
   #handleError(error) {
     this.#outputView.printError(error.message);
@@ -28,9 +26,14 @@ class App {
     }
   }
 
+  #askGenerationLottos(buyLottoPrice) {
+    return this.#generationLottoService.generateLottoNumbers(buyLottoPrice);
+  }
+
   *#processGame() {
     const buyLottoPrice = yield* this.#askBuyLottoPrice();
-    console.log(buyLottoPrice);
+    const lottos = this.#askGenerationLottos(buyLottoPrice);
+    console.log(lottos);
   }
 
   *#run() {
