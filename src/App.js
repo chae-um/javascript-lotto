@@ -1,8 +1,11 @@
 const { runGenerator } = require('./utils/runGenerator');
 const { InputView, OutputView } = require('./views');
-const { BuyLottoPriceValidator } = require('./validator');
+const {
+  BuyLottoPriceValidator,
+  LottoNumberValidator,
+  BonusNumberValidator,
+} = require('./validator');
 const { GenerationLottoService } = require('./services');
-const LottoNumberValidator = require('./validator/LottoNumberValidator');
 const { SYMBOLS } = require('./constants/symbols');
 
 class App {
@@ -26,6 +29,12 @@ class App {
     return winningLottoNumber;
   }
 
+  *#askBonusNumber(lottoNumbers) {
+    const inputBonusNumber = yield (resolve) => this.#inputView.readBonusNumber(resolve);
+    BonusNumberValidator.of(inputBonusNumber, lottoNumbers).validateBonusNumber();
+    return Number(inputBonusNumber);
+  }
+
   #askGenerationLottos(buyLottoPrice) {
     return this.#generationLottoService.generateLottoNumbers(buyLottoPrice);
   }
@@ -39,7 +48,8 @@ class App {
     const { lottoCount, lottoNumbers } = this.#askGenerationLottos(buyLottoPrice);
     this.#askPrintGenerationLottoNumbers({ lottoCount, lottoNumbers });
     const winningLottoNumber = yield* this.#askWinningLottoNumber();
-    console.log(winningLottoNumber);
+    const bonusNumber = yield* this.#askBonusNumber(winningLottoNumber);
+    console.log(bonusNumber);
   }
 
   *#run() {

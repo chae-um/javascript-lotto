@@ -11,10 +11,10 @@ const ERROR_INSTANCES = Object.freeze({
     invalidRange: new AppError(ERROR_MESSAGE.buyLottoPrice.invalidRange),
     invalidUnit: new AppError(ERROR_MESSAGE.buyLottoPrice.invalidUnit),
   }),
-  winningLottoNumber: Object.freeze({
-    invalidRange: new AppError(ERROR_MESSAGE.winningLottoNumber.invalidRange),
-    invalidCount: new AppError(ERROR_MESSAGE.winningLottoNumber.invalidCount),
-    existDuplicateNumber: new AppError(ERROR_MESSAGE.winningLottoNumber.existDuplicateNumber),
+  lottoNumber: Object.freeze({
+    invalidRange: new AppError(ERROR_MESSAGE.lottoNumber.invalidRange),
+    invalidCount: new AppError(ERROR_MESSAGE.lottoNumber.invalidCount),
+    existDuplicateNumber: new AppError(ERROR_MESSAGE.lottoNumber.existDuplicateNumber),
   }),
 });
 

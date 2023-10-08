@@ -31,4 +31,9 @@ const isValidLottoCount = (lottoNumbers) => lottoNumbers.length === GAME_TERMS.l
 const isDuplicateLottoNumbers = (lottoNumbers) =>
   new Set(lottoNumbers).size !== lottoNumbers.length;
 
-module.exports = { isDuplicateLottoNumbers, isValidLottoCount, isValidLottoNumbersRange };
+module.exports = {
+  isDuplicateLottoNumbers,
+  isValidLottoCount,
+  isValidLottoNumberRange,
+  isValidLottoNumbersRange,
+};
