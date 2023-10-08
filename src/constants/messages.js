@@ -18,6 +18,7 @@ const ERROR_MESSAGE = Object.freeze({
   common: Object.freeze({
     existEmptyValue: '값을 입력해주세요.',
     existSpaces: '입력한 값에 공백이 존재합니다.',
+    typeOfNumber: '숫자만 입력 가능합니다.',
   }),
   buyLottoPrice: Object.freeze({
     invalidRange: `구매 가능한 로또 금액은 ${GAME_TERMS.lottoPrice.minRange}원 ~ ${GAME_TERMS.lottoPrice.maxRange}원 입니다.`,

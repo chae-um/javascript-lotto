@@ -5,6 +5,7 @@ const ERROR_INSTANCES = Object.freeze({
   common: Object.freeze({
     existEmptyValue: new AppError(ERROR_MESSAGE.common.existEmptyValue),
     existSpaces: new AppError(ERROR_MESSAGE.common.existSpaces),
+    typeOfNumber: new AppError(ERROR_MESSAGE.common.typeOfNumber),
   }),
   buyLottoPrice: Object.freeze({
     invalidRange: new AppError(ERROR_MESSAGE.buyLottoPrice.invalidRange),

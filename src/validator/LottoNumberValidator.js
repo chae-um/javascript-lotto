@@ -36,6 +36,7 @@ class LottoNumberValidator {
   validateLottoNumber() {
     this.#commonValidator.validateExistEmptyValue(this.#lottoNumbers);
     this.#commonValidator.validateExistSpace(this.#lottoNumbers);
+    this.#commonValidator.validateTypeOfNumbers(this.#lottoNumbers);
     this.#validateLottoNumberCount();
     this.#validateLottoNumberRange();
     this.#validateDuplicateLottoNumber();
