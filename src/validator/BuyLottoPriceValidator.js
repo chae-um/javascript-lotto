@@ -1,5 +1,8 @@
 const { ERROR_INSTANCES } = require('../constants/errors');
-const { isValidUnitLottoPrice, isValidRangeLottoPrice } = require('../utils/validate');
+const {
+  isValidUnitLottoPrice,
+  isValidRangeLottoPrice,
+} = require('../utils/validate/buyLottoPrice');
 const CommonValidator = require('./CommonValidator');
 
 class BuyLottoPriceValidator {

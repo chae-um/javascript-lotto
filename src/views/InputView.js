@@ -25,6 +25,17 @@ const InputView = {
       callback(text);
     });
   },
+
+  /**
+   * 유저가 당첨 번호를 입력하기 위한 메서드
+   * @param {function} callback - 콜백 함수
+   * @returns {void}
+   */
+  readWinningLottoNumbers(callback) {
+    this.read(INPUT_MESSAGE.winningLottoNumber, (text) => {
+      callback(text);
+    });
+  },
 };
 
 module.exports = InputView;

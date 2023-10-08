@@ -1,5 +1,5 @@
 const { ERROR_INSTANCES } = require('../constants/errors');
-const { isEmptyInputValue, isExistSpace } = require('../utils/validate');
+const { isEmptyInputValue, isExistSpace } = require('../utils/validate/common');
 
 const CommonValidator = {
   validateExistEmptyValue(value) {
