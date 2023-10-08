@@ -31,6 +31,7 @@ class BuyLottoPriceValidator {
   validateBuyLottoPrice() {
     this.#commonValidator.validateExistEmptyValue(this.#buyLottoPrice);
     this.#commonValidator.validateExistSpace(this.#buyLottoPrice);
+    this.#commonValidator.validateTypeOfNumber(this.#buyLottoPrice);
     this.#validateRangeOfBuyLottoPrice();
     this.#validateUnitBuyLottoPrice();
   }

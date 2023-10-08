@@ -21,16 +21,17 @@ class LottoNumberValidator {
 
   #validateLottoNumberRange() {
     if (!isValidLottoNumbersRange(this.#lottoNumbers))
-      throw ERROR_INSTANCES.LottoNumber.invalidRange;
+      throw ERROR_INSTANCES.winningLottoNumber.invalidRange;
   }
 
   #validateDuplicateLottoNumber() {
     if (isDuplicateLottoNumbers(this.#lottoNumbers))
-      throw ERROR_INSTANCES.LottoNumber.existDuplicateNumber;
+      throw ERROR_INSTANCES.winningLottoNumber.existDuplicateNumber;
   }
 
   #validateLottoNumberCount() {
-    if (!isValidLottoCount(this.#lottoNumbers)) throw ERROR_INSTANCES.LottoNumber.invalidCount;
+    if (!isValidLottoCount(this.#lottoNumbers))
+      throw ERROR_INSTANCES.winningLottoNumber.invalidCount;
   }
 
   validateLottoNumber() {
