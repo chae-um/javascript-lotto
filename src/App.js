@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const { runGenerator } = require('./utils/runGenerator');
 const { InputView, OutputView } = require('./views');
 const {
@@ -5,8 +6,9 @@ const {
   LottoNumberValidator,
   BonusNumberValidator,
 } = require('./validator');
-const { GenerationLottoService } = require('./services');
+const { GenerationLottoService, WinningResultService } = require('./services');
 const { SYMBOLS } = require('./constants/symbols');
+const { ascendingNumbers } = require('./utils/array');
 
 class App {
   #inputView = InputView;
@@ -14,6 +16,8 @@ class App {
   #outputView = OutputView;
 
   #generationLottoService = GenerationLottoService;
+
+  #winningResultService = WinningResultService;
 
   *#askBuyLottoPrice() {
     const inputBuyLottoPrice = yield (resolve) => this.#inputView.readBuyLottoPrice(resolve);
@@ -39,17 +43,39 @@ class App {
     return this.#generationLottoService.generateLottoNumbers(buyLottoPrice);
   }
 
+  #askCalculationWinningResult({ winningInfo, buyLottoInfo }) {
+    return this.#winningResultService.generateWinningResult({ winningInfo, buyLottoInfo });
+  }
+
   #askPrintGenerationLottoNumbers({ lottoCount, lottoNumbers }) {
     this.#outputView.printGenerationLottoNumbers({ lottoCount, lottoNumbers });
   }
 
-  *#processGame() {
+  #askPrintWinningResult({ rewardResult, rateOfReturn }) {
+    this.#outputView.printWinningResult({ rewardResult, rateOfReturn });
+  }
+
+  *#processGenerateLottoPhase() {
     const buyLottoPrice = yield* this.#askBuyLottoPrice();
     const { lottoCount, lottoNumbers } = this.#askGenerationLottos(buyLottoPrice);
     this.#askPrintGenerationLottoNumbers({ lottoCount, lottoNumbers });
-    const winningLottoNumber = yield* this.#askWinningLottoNumber();
+    return { buyLottoPrice, lottoNumbers };
+  }
+
+  *#processConfirmWinningResultPhase({ buyLottoPrice, lottoNumbers }) {
+    const winningLottoNumber = ascendingNumbers(yield* this.#askWinningLottoNumber());
     const bonusNumber = yield* this.#askBonusNumber(winningLottoNumber);
-    console.log(bonusNumber);
+    const { rewardResult, rateOfReturn } = this.#askCalculationWinningResult({
+      buyLottoInfo: { buyLottoPrice, lottoNumbers },
+      winningInfo: { winningLottoNumber, bonusNumber },
+    });
+    this.#askPrintWinningResult({ rewardResult, rateOfReturn });
+  }
+
+  *#processGame() {
+    const { buyLottoPrice, lottoNumbers } = yield* this.#processGenerateLottoPhase();
+    yield* this.#processConfirmWinningResultPhase({ buyLottoPrice, lottoNumbers });
+    Console.close();
   }
 
   *#run() {

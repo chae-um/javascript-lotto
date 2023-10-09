@@ -3,6 +3,7 @@ const SYMBOLS = Object.freeze({
   space: ' ',
   newLine: '\n',
   comma: ',',
+  PERCENT: '%',
 });
 
 module.exports = { SYMBOLS };

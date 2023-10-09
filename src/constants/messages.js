@@ -8,11 +8,26 @@ const INPUT_MESSAGE = Object.freeze({
 });
 
 const OUTPUT_MESSAGE_METHOD = Object.freeze({
-  buyLottos: (lottoCount) => `\n${lottoCount}개를 구매했습니다.`,
-  lottoNumbers: (lottoNumbers) =>
-    lottoNumbers
+  buyLottos(lottoCount) {
+    return `\n${lottoCount}개를 구매했습니다.`;
+  },
+  lottoNumbers(lottoNumbers) {
+    return lottoNumbers
       .map((lottoNumber) => `[${lottoNumber.join(`${SYMBOLS.comma} `)}]`)
-      .join(SYMBOLS.newLine),
+      .join(SYMBOLS.newLine);
+  },
+  rewardResult(rewardResult) {
+    return Object.entries(rewardResult)
+      .map(([key, value]) => `${key} - ${value}개`)
+      .join(SYMBOLS.newLine);
+  },
+  rateOfReturn(rateOfReturn) {
+    return `총 수익률은 ${rateOfReturn}%입니다.`;
+  },
+});
+
+const OUTPUT_MESSAGE_TEXT = Object.freeze({
+  winningStatisticsHeader: '\n당첨 통계\n---',
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -32,4 +47,4 @@ const ERROR_MESSAGE = Object.freeze({
   }),
 });
 
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE_METHOD };
+module.exports = { OUTPUT_MESSAGE_TEXT, INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE_METHOD };

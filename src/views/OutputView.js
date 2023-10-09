@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { OUTPUT_MESSAGE_METHOD } = require('../constants/messages');
+const { OUTPUT_MESSAGE_METHOD, OUTPUT_MESSAGE_TEXT } = require('../constants/messages');
 
 /**
  * '출력'의 역할을 수행하는 View Layer
@@ -29,6 +29,12 @@ const OutputView = {
   printGenerationLottoNumbers({ lottoCount, lottoNumbers }) {
     this.print(OUTPUT_MESSAGE_METHOD.buyLottos(lottoCount));
     this.print(OUTPUT_MESSAGE_METHOD.lottoNumbers(lottoNumbers));
+  },
+
+  printWinningResult({ rewardResult, rateOfReturn }) {
+    this.print(OUTPUT_MESSAGE_TEXT.winningStatisticsHeader);
+    this.print(OUTPUT_MESSAGE_METHOD.rewardResult(rewardResult));
+    this.print(OUTPUT_MESSAGE_METHOD.rateOfReturn(rateOfReturn));
   },
 };
 

@@ -1,3 +1,4 @@
 const GenerationLottoService = require('./GenerationLottoService');
+const WinningResultService = require('./WinningResultService');
 
-module.exports = { GenerationLottoService };
+module.exports = { GenerationLottoService, WinningResultService };
