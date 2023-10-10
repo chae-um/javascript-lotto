@@ -1,4 +1,5 @@
 const { ERROR_INSTANCES } = require('../constants/errors');
+const { SYMBOLS } = require('../constants/symbols');
 const {
   isValidLottoNumbersRange,
   isDuplicateLottoNumbers,
@@ -11,12 +12,12 @@ class LottoNumberValidator {
 
   #lottoNumbers;
 
-  constructor(lottoNumber) {
-    this.#lottoNumbers = lottoNumber;
+  constructor(inputLottoNumber) {
+    this.#lottoNumbers = inputLottoNumber;
   }
 
-  static from(lottoNumber) {
-    return new LottoNumberValidator(lottoNumber);
+  static from(inputLottoNumber) {
+    return new LottoNumberValidator(inputLottoNumber);
   }
 
   #validateLottoNumberRange() {
@@ -37,6 +38,7 @@ class LottoNumberValidator {
     this.#commonValidator.validateExistEmptyValue(this.#lottoNumbers);
     this.#commonValidator.validateExistSpace(this.#lottoNumbers);
     this.#commonValidator.validateTypeOfNumbers(this.#lottoNumbers);
+    this.#lottoNumbers = this.#lottoNumbers.split(SYMBOLS.comma).map(Number);
     this.#validateLottoNumberCount();
     this.#validateLottoNumberRange();
     this.#validateDuplicateLottoNumber();

@@ -28,9 +28,8 @@ class App {
   *#askWinningLottoNumber() {
     const inputWinningLottoNumber = yield (resolve) =>
       this.#inputView.readWinningLottoNumbers(resolve);
-    const winningLottoNumber = inputWinningLottoNumber.split(SYMBOLS.comma).map(Number);
-    LottoNumberValidator.from(winningLottoNumber).validateLottoNumber();
-    return winningLottoNumber;
+    LottoNumberValidator.from(inputWinningLottoNumber).validateLottoNumber();
+    return inputWinningLottoNumber.split(SYMBOLS.comma).map(Number);
   }
 
   *#askBonusNumber(lottoNumbers) {

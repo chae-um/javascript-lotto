@@ -8,4 +8,4 @@ const ascendingNumbers = (numbers) =>
     newNumbers.sort((numberA, numberB) => numberA - numberB);
   });
 
-module.exports = { ascendingNumbers };
+module.exports = { withArrayCopy, ascendingNumbers };

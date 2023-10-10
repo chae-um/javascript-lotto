@@ -26,7 +26,8 @@ const isTypeOfNumber = (value) => /^\d+$/.test(value);
  * @param {*} numbers
  * @returns {boolean} 배열 내 값이 숫자인지의 여부에 대한 boolean
  */
-const isTypeOfNumbers = (array) => array.every((element) => isTypeOfNumber(element));
+const isTypeOfNumbers = (value) =>
+  value.split(SYMBOLS.comma).every((element) => isTypeOfNumber(element));
 
 module.exports = {
   isTypeOfNumber,

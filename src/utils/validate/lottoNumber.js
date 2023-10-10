@@ -31,9 +31,24 @@ const isValidLottoCount = (lottoNumbers) => lottoNumbers.length === GAME_TERMS.l
 const isDuplicateLottoNumbers = (lottoNumbers) =>
   new Set(lottoNumbers).size !== lottoNumbers.length;
 
+/**
+ *
+ * @param {object} AscendingOrderParams - 함수 실행을 위한 매개변수
+ * @property {number} currentLottoNumber - 현재 로또 번호
+ * @property {number} index - 인덱스
+ * @property {number[]} lottoNumbers - 전체 로또 번호
+ * @returns {boolean} 모든 로또 번호 들이 오름차순으로 정렬되어있는지의 여부
+ */
+const isAscendingOrder = ({ currentLottoNumber, index, lottoNumbers }) => {
+  const isLastIndex = index === lottoNumbers.length - 1;
+  if (isLastIndex) return true;
+  return currentLottoNumber < lottoNumbers[index + 1];
+};
+
 module.exports = {
   isDuplicateLottoNumbers,
   isValidLottoCount,
   isValidLottoNumberRange,
   isValidLottoNumbersRange,
+  isAscendingOrder,
 };
