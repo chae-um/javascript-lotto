@@ -1,6 +1,7 @@
 const { GAME_TERMS } = require('../constants/gameTerms');
 const { SYMBOLS } = require('../constants/symbols');
-const { withObjectCopy } = require('../utils/object');
+const { countBy } = require('../utils/array');
+const { reduceFromObject, update } = require('../utils/object');
 
 class LottoRewardCalculator {
   #rewardTable = GAME_TERMS.rewardInfo;
@@ -18,7 +19,8 @@ class LottoRewardCalculator {
   }
 
   #initRewardResult() {
-    return Object.entries(this.#rewardTable).reduce(
+    return reduceFromObject(
+      this.#rewardTable,
       (initialRewardResult, [description]) => ({
         ...initialRewardResult,
         [`${description}`]: 0,
@@ -27,19 +29,23 @@ class LottoRewardCalculator {
     );
   }
 
-  #createNewRewardInfo(prevRewardInfo, rewardResultKey) {
-    return withObjectCopy(prevRewardInfo, (newRewardInfo) => {
-      const receivedWinningAmount = this.#rewardTable[rewardResultKey];
-      newRewardInfo.rewardResult[rewardResultKey] += 1;
-      newRewardInfo.winningAmount += receivedWinningAmount;
-      return newRewardInfo;
+  #calculateRewardResult(prevRewardResult, [rewardKey, count]) {
+    return update(prevRewardResult, rewardKey, (prevValue) => (prevValue ?? 0) + count);
+  }
+
+  #createRewardResult(rewardResultCount) {
+    return reduceFromObject(rewardResultCount, this.#calculateRewardResult.bind(this), {
+      ...this.#rewardResult,
     });
   }
 
-  #setRewardInfo(prevRewardInfo, rewardResultKey) {
-    return !rewardResultKey
-      ? prevRewardInfo
-      : this.#createNewRewardInfo(prevRewardInfo, rewardResultKey);
+  #calculateWinningAmount(prevWinningAmount, [rewardKey, count]) {
+    const winningAmount = this.#rewardTable[rewardKey] * count;
+    return prevWinningAmount + winningAmount;
+  }
+
+  #createWinningAmount(rewardResultCount) {
+    return reduceFromObject(rewardResultCount, this.#calculateWinningAmount.bind(this), 0);
   }
 
   #createRewardResultKey({ count, hasBonusNumber }) {
@@ -53,16 +59,23 @@ class LottoRewardCalculator {
     );
   }
 
-  #updateRewardInfo(prevRewardInfo, lottoMatchInfo) {
-    const rewardResultKey = this.#createRewardResultKey(lottoMatchInfo);
-    return this.#setRewardInfo(prevRewardInfo, rewardResultKey);
+  #createRewardResultKeys(lottoMatchInfos) {
+    return lottoMatchInfos
+      .map(this.#createRewardResultKey.bind(this))
+      .filter((rewardKey) => rewardKey !== null);
+  }
+
+  #calculateRewardResultCount() {
+    const rewardKeys = this.#createRewardResultKeys(this.#lottoMatchInfos);
+    return countBy(rewardKeys);
   }
 
   calculateRewardInfo() {
-    return this.#lottoMatchInfos.reduce(this.#updateRewardInfo.bind(this), {
-      rewardResult: { ...this.#rewardResult },
-      winningAmount: 0,
-    });
+    const rewardResultCount = this.#calculateRewardResultCount();
+    return {
+      rewardResult: this.#createRewardResult(rewardResultCount),
+      winningAmount: this.#createWinningAmount(rewardResultCount),
+    };
   }
 }
 
