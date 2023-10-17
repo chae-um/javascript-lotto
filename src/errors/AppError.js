@@ -9,15 +9,8 @@ class AppError extends Error {
    */
   static #PREFIX = '[ERROR]';
 
-  /**
-   * 에러 이름
-   * @type {string}
-   */
-  name;
-
   constructor(message) {
     super(`\n${AppError.#PREFIX} : ${message}\n`);
-    this.name = this.constructor.name;
   }
 }
 
