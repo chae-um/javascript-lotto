@@ -20,6 +20,9 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    'class-methods-use-this': ['off'],
+    'no-undef': ['off'],
+    'no-param-reassign': ['off'],
     'consistent-return': ['off'],
     // 들여쓰기 깊이 제한
     'max-depth': ['error', 2],
