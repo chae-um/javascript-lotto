@@ -39,7 +39,7 @@ class RateCalculator {
 
   /**
    * 수익률을 계산 후 소수점 단위에 맞춰 반환하는 메서드
-   * @returns {number|string} 수익률 (정수 또는 소수점 반올림 값)
+   * @returns {number} 수익률 (정수 또는 소수점 반올림 값)
    */
   createRateOfReturn() {
     const rateOfReturn = this.#calculateRateOfReturn();
