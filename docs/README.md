@@ -54,3 +54,96 @@
 ## 예외 처리 (공통)
 
 - 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
+
+# 📝 클래스 다이어그램
+
+![class diagram](classDiagram.png)
+
+# 📈 플로우 차트
+
+![flowChart](flowChart.png)
+
+#
+
+# 📁 폴더 구조
+
+```markdown
+javascript-lotto/
+│
+├── src/
+│ ├── constants/
+│ │ ├── errors.js
+│ │ ├── gameTerms.js
+│ │ ├── messages.js
+│ │ └── symbols.js
+│ │
+│ ├── domain/
+│ │ ├── Bank.js
+│ │ ├── Lotto.js
+│ │ ├── LottoFactory.js
+│ │ ├── LottoNumberMaker.js
+│ │ ├── LottoRewardCalculator.js
+│ │ ├── RateCalculator.js
+│ │ ├── WinningResult.js
+│ │ └── index.js
+│ │
+│ ├── services/
+│ │ ├── GenerationLottoService.js
+│ │ ├── WinningResultService.js
+│ │ └── index.js
+│ │
+│ ├── utils/
+│ │ ├── validate/
+│ │ │ ├── buyLottoPrice.js
+│ │ │ ├── common.js
+│ │ │ └── lottoNumber.js
+│ │ ├── array.js
+│ │ ├── object.js
+│ │ └── runGenerator.js
+│ │
+│ ├── validator/
+│ │ ├── BonusNumberValidator.js
+│ │ ├── BuyLottoPriceValidator.js
+│ │ ├── CommonValidator.js
+│ │ ├── LottoNumberValidator.js
+│ │ └── index.js
+│ │
+│ ├── views/
+│ │ ├── InputView.js
+│ │ ├── OutputView.js
+│ │ └── index.js
+│ │
+│ ├── errors/
+│ │ └── AppError.js
+│ │
+│ └── App.js
+│
+├── tests/
+│ ├── domain/
+│ │ ├── Bank.test.js
+│ │ ├── Lotto.test.js
+│ │ ├── LottoFactory.test.js
+│ │ ├── LottoNumberMaker.test.js
+│ │ ├── LottoRewardCalculator.test.js
+│ │ ├── RateCalculator.test.js
+│ │ └── WinningResult.test.js
+│ │
+│ ├── utils/
+│ │ ├── Array.test.js
+│ │ ├── Object.test.js
+│ │ └── RunGenerator.test.js
+│ │
+│ ├── validators/
+│ │ ├── BonusNumberValidator.test.js
+│ │ ├── BuyLottoPriceValidator.test.js
+│ │ ├── CommonValidator.test.js
+│ │ └── LottoNumberValidator.test.js
+│ │
+│ ├── ApplicationTest.js
+│ │
+│ └── LottoTest.js
+│
+└── docs/
+├── classDiagram.png
+└── README.md
+```
