@@ -1,0 +1,149 @@
+# 🚀 기능 요구 사항
+
+## 로또 구입 금액 입력 기능 (phase 1)
+
+- '구입금액을 입력해 주세요.' 라는 메시지와 함께 입력 받을 수 있어야 한다.
+- 로또 구매 금액은 숫자이다.
+- 로또 구매 금액은 1,000원 단위로 입력 받으며, 만약 나누어 떨어지지 않는다면 예외 처리 한다.
+- 로또 구입 금액은 최소 1,000원, 최대 10,000원 까지로 제한하며 범위를 벗어나는 가격은 예외 처리 한다.
+- 공백 및 띄어쓰기는 허용하지 않는다.
+
+## 로또 발행 기능 (phase 2)
+
+- 로또 한장의 가격은 1000원이다.
+- 구입 금액에 해당되는 로또가 발행될 수 있어야 한다.
+  - 발행 되는 로또 번호의 숫자 범위는 1 ~ 45의 정수이다.
+  - 발행 되는 로또 번호의 갯수는 6개이다.
+  - 발행 되는 로또 내 번호 들은 서로 중복되지 않는다.
+  - 발행되는 번호는 쉼표(,)를 기준으로 구분한다.
+- 발행된 로또는 오름차순으로 정렬될 수 있어야 한다.
+
+## 발행된 로또 출력 기능 (phase 3)
+
+- '로또 구매한 갯수'를 구매했습니다. 라는 메시지가 출력되어야 한다.
+- 발행된 로또 들이 줄 바꿈된 형태로 출력되어야 한다.
+
+## 당첨 번호 입력 기능 (phase 4)
+
+- 당첨 번호를 입력해 주세요. 라는 메시지와 함께 입력 받을 수 있어야 한다.
+- 당첨 번호를 입력할 수 있어야 하며 당첨 번호도 로또 번호와 동일한 발행 조건을 가진다.
+
+## 보너스 번호 입력 기능 (phase 5)
+
+- 보너스 번호를 입력해 주세요. 라는 메시지와 함께 입력 받을 수 있어야 한다.
+- 보너스 번호를 입력할 수 있어야 한다.
+  - 보너스 번호의 숫자 범위는 1 ~ 45의 정수다.
+  - 발행되는 보너스 번호의 갯수는 1개다.
+  - 발행되는 보너스 번호는 당첨 번호와 중복되지 않는다.
+
+## 당첨 여부 확인 기능 (phase 6)
+
+- 당첨 기준과 금액은 아래와 같다.
+  - 1등: 6개 번호 일치 / 2,000,000,000원
+  - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
+  - 3등: 5개 번호 일치 / 1,500,000원
+  - 4등: 4개 번호 일치 / 50,000원
+  - 5등: 3개 번호 일치 / 5,000원
+- 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 확인할 수 있어야 한다.
+- 수익률은 소수점 둘째 자리에서 반올림 되어야 한다.
+
+## 당첨 여부 출력 기능 (phase 7)
+
+- 당첨 통계, ---, 당첨 결과 및 수익률을 메시지 형태로 출력할 수 있어야 한다.
+
+## 예외 처리 (공통)
+
+- 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
+
+# 📝 클래스 다이어그램
+
+![class diagram](classDiagram.png)
+
+# 📈 플로우 차트
+
+![flowChart](flowChart.png)
+
+#
+
+# 📁 폴더 구조
+
+```markdown
+javascript-lotto/
+│
+├── src/
+│ ├── constants/
+│ │ ├── errors.js
+│ │ ├── gameTerms.js
+│ │ ├── messages.js
+│ │ └── symbols.js
+│ │
+│ ├── domain/
+│ │ ├── Bank.js
+│ │ ├── Lotto.js
+│ │ ├── LottoFactory.js
+│ │ ├── LottoNumberMaker.js
+│ │ ├── LottoRewardCalculator.js
+│ │ ├── RateCalculator.js
+│ │ ├── WinningResult.js
+│ │ └── index.js
+│ │
+│ ├── services/
+│ │ ├── GenerationLottoService.js
+│ │ ├── WinningResultService.js
+│ │ └── index.js
+│ │
+│ ├── utils/
+│ │ ├── validate/
+│ │ │ ├── buyLottoPrice.js
+│ │ │ ├── common.js
+│ │ │ └── lottoNumber.js
+│ │ ├── array.js
+│ │ ├── object.js
+│ │ └── runGenerator.js
+│ │
+│ ├── validator/
+│ │ ├── BonusNumberValidator.js
+│ │ ├── BuyLottoPriceValidator.js
+│ │ ├── CommonValidator.js
+│ │ ├── LottoNumberValidator.js
+│ │ └── index.js
+│ │
+│ ├── views/
+│ │ ├── InputView.js
+│ │ ├── OutputView.js
+│ │ └── index.js
+│ │
+│ ├── errors/
+│ │ └── AppError.js
+│ │
+│ └── App.js
+│
+├── tests/
+│ ├── domain/
+│ │ ├── Bank.test.js
+│ │ ├── Lotto.test.js
+│ │ ├── LottoFactory.test.js
+│ │ ├── LottoNumberMaker.test.js
+│ │ ├── LottoRewardCalculator.test.js
+│ │ ├── RateCalculator.test.js
+│ │ └── WinningResult.test.js
+│ │
+│ ├── utils/
+│ │ ├── Array.test.js
+│ │ ├── Object.test.js
+│ │ └── RunGenerator.test.js
+│ │
+│ ├── validators/
+│ │ ├── BonusNumberValidator.test.js
+│ │ ├── BuyLottoPriceValidator.test.js
+│ │ ├── CommonValidator.test.js
+│ │ └── LottoNumberValidator.test.js
+│ │
+│ ├── ApplicationTest.js
+│ │
+│ └── LottoTest.js
+│
+└── docs/
+├── classDiagram.png
+└── README.md
+```
