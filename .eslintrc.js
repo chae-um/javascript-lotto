@@ -22,6 +22,8 @@ module.exports = {
       rules: {
         'max-lines-per-function': 'off',
         'no-new': 'off',
+        'no-undef': 'off',
+        'arrow-body-style': 'off',
       },
     },
   ],
