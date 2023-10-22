@@ -13,6 +13,12 @@ const View = {
     Validators.checkPurchaseAmount(purchaseAmount);
     return purchaseAmount;
   },
+
+  async readLottoNumbers() {
+    const LottoNumbers = await InputView.readLineAsync(OUTPUT_MESSAGES.LOTTO_NUMBER);
+    Validators.checkLottoNumbers(LottoNumbers);
+    return LottoNumbers;
+  },
 };
 
 export default View;

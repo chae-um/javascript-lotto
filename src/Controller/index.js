@@ -13,8 +13,9 @@ class LottoController {
 
   async run() {
     const purchaseAmount = await this.#view.readPurchaseAmount();
-    const LottoNumbers = this.#model.generateLottoNumbers(purchaseAmount);
-    this.#view.printLotto(LottoNumbers);
+    const userLottoNumbers = this.#model.generateLottoNumbers(purchaseAmount);
+    this.#view.printLotto(userLottoNumbers);
+    const lottoNumbers = await this.#view.readLottoNumbers();
   }
 }
 

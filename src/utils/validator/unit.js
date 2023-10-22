@@ -18,3 +18,10 @@ export const checkEmpty = (purchaseAmount) => {
     throw new ValidationError(ERROR_MESSAGES.EMPTY);
   }
 };
+
+export const checkComma = (lottoNumbers) => {
+  const matches = lottoNumbers.match(/,/g);
+  if (matches.length !== 5) {
+    throw new ValidationError(ERROR_MESSAGES.COMMA);
+  }
+};
