@@ -1,5 +1,9 @@
-class App {
-  play() {}
+import LottoController from './controller/LottoController.js';
+
+export default class App {
+  async play() {
+    new LottoController().play();
+  }
 }
 
-module.exports = App;
+new App().play();
