@@ -1,5 +1,12 @@
 import Lotto from './Lotto.js';
-import { checkNumber, checkDividedThousand, checkEmpty, checkComma } from './unit.js';
+import {
+  checkNumber,
+  checkDividedThousand,
+  checkEmpty,
+  checkComma,
+  checkWithinRange,
+  checkDuplication,
+} from './unit.js';
 
 const Validators = {
   checkPurchaseAmount(input) {
@@ -15,6 +22,12 @@ const Validators = {
   checkLottoNumbers(lottoNumbers) {
     checkComma(lottoNumbers);
     Lotto.validate(lottoNumbers.split(','));
+  },
+
+  checkBonusNumber(bonusNumber, lottoNumbers) {
+    checkNumber(bonusNumber);
+    checkWithinRange(bonusNumber);
+    checkDuplication(bonusNumber, lottoNumbers);
   },
 };
 

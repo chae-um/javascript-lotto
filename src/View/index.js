@@ -13,11 +13,17 @@ const View = {
     Validators.checkPurchaseAmount(purchaseAmount);
     return purchaseAmount;
   },
-
+  // TODO : 변수명 소문자로
   async readLottoNumbers() {
     const LottoNumbers = await InputView.readLineAsync(OUTPUT_MESSAGES.LOTTO_NUMBER);
     Validators.checkLottoNumbers(LottoNumbers);
     return LottoNumbers;
+  },
+
+  async readBonusNumber(lottoNumbers) {
+    const bonusNumber = await InputView.readLineAsync(OUTPUT_MESSAGES.BONUS);
+    Validators.checkBonusNumber(bonusNumber, lottoNumbers);
+    return bonusNumber;
   },
 };
 

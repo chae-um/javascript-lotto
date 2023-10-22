@@ -14,4 +14,5 @@ export const OUTPUT_MESSAGES = {
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요\n',
   PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
   LOTTO_NUMBER: '로또 번호를 입력해주세요\n',
+  BONUS: '보너스 번호를 입력해 주세요.',
 };
