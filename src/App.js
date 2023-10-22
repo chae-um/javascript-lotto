@@ -1,5 +1,11 @@
-class App {
-  play() {}
-}
+import LottoGame from './controller/LottoGame.js';
 
-module.exports = App;
+const app = {
+	play() {
+		const lottoGame = new LottoGame();
+		lottoGame.start();
+	},
+};
+
+app.play();
+export default app;
