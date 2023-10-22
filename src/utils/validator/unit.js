@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from '../../constants/Messages.js';
-import CORE_SYSTEM from '../../constants/System.js';
+import { CORE_SYSTEM } from '../../constants/System.js';
 import ValidationError from '../error/ValidationError.js';
 
 export const checkNumber = (purchaseAmount) => {

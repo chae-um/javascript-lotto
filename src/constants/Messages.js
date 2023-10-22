@@ -15,4 +15,9 @@ export const OUTPUT_MESSAGES = {
   PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
   LOTTO_NUMBER: '로또 번호를 입력해주세요\n',
   BONUS: '보너스 번호를 입력해 주세요.',
+  THREE: (count) => `3개 일치 (5,000원) - ${count}`,
+  FOUR: (count) => `4개 일치 (50,000원) - ${count}`,
+  FIVE: (count) => `5개 일치 (1,500,000원) - ${count}`,
+  FIVE_BONUS: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}`,
+  SIX: (count) => `6개 일치 (2,000,000,000원) - ${count}`,
 };

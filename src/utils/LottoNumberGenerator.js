@@ -1,6 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
 import Validators from './validator/index.js';
-import CORE_SYSTEM from '../constants/System.js';
+import { CORE_SYSTEM } from '../constants/System.js';
 
 const LottoNumberGenerator = {
   run(count) {
