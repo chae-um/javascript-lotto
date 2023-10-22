@@ -4,7 +4,9 @@ import { PRIZE, UNIT } from '../contants/Unit.js';
 
 export function printLottoNumbers(lotto) {
   Console.print(`${lotto.length}${GAME_MESSAGE.boughtAmount}`);
-  lotto.forEach((item) => Console.print(`[${item.join(', ')}]`));
+  lotto.forEach((item) =>
+    Console.print(`[${item.join(`${UNIT.divider}${UNIT.space}`)}]`)
+  );
 }
 
 export function printLottoResult(result, amount) {

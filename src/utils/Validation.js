@@ -1,4 +1,6 @@
-import { ERROR_MESSAGE } from "../contants/Message.js";
+import { GAME_OPTION } from '../contants/GameOption.js';
+import { ERROR_MESSAGE } from '../contants/Message.js';
+import { UNIT } from '../contants/Unit.js';
 
 export function checkMoneyInput(input) {
   isNumber(input);
@@ -27,34 +29,34 @@ function isNumber(input) {
 function isValidNumber(input) {
   const value = Number(input);
 
-  if (value % 1000 !== 0) {
+  if (value % UNIT.lottoPrice !== 0) {
     throw new Error(ERROR_MESSAGE.isNotValidMoney);
   }
 }
 
 function isValidDivider(input) {
-  if (input.split(",").length !== 6) {
+  if (input.split(UNIT.divider).length !== GAME_OPTION.pickNumber) {
     throw new Error(ERROR_MESSAGE.isNotValidDivider);
   }
 }
 
 function isValidLottoNumbers(input) {
-  const lottoNumbers = input.split(",").map(Number);
+  const lottoNumbers = input.split(UNIT.divider).map(Number);
 
   lottoNumbers.forEach((number) => {
     if (Number.isNaN(number)) {
       throw new Error(ERROR_MESSAGE.isNotNumber);
     }
-    if (number < 1 || number > 45) {
+    if (number < GAME_OPTION.startNum || number > GAME_OPTION.endNum) {
       throw new Error(ERROR_MESSAGE.isNotValidRange);
     }
   });
 }
 
 function isLottoNumbersDuplication(input) {
-  const lottoNumbers = new Set(input.split(",").map(Number));
+  const lottoNumbers = new Set(input.split(UNIT.divider).map(Number));
 
-  if (lottoNumbers.size !== 6) {
+  if (lottoNumbers.size !== GAME_OPTION.pickNumber) {
     throw new Error(ERROR_MESSAGE.isDuplicationWinningNumber);
   }
 }
@@ -65,7 +67,10 @@ function isValidLottoBonusNumber(input) {
   if (Number.isNaN(lottoBonusNumber)) {
     throw new Error(ERROR_MESSAGE.isNotNumber);
   }
-  if (lottoBonusNumber < 1 || lottoBonusNumber > 45) {
+  if (
+    lottoBonusNumber < GAME_OPTION.startNum ||
+    lottoBonusNumber > GAME_OPTION.endNum
+  ) {
     throw new Error(ERROR_MESSAGE.isNotValidRange);
   }
 }

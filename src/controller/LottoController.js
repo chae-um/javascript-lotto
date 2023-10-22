@@ -32,7 +32,7 @@ export default class LottoController {
 
     this.#computer = new Computer();
     this.#computer.setWinningNumbers(
-      winningNumbers.split(',').map(Number),
+      winningNumbers.split(UNIT.divider).map(Number),
       Number(winningBonusNumber)
     );
     this.#printLottoResult();
