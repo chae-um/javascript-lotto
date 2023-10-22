@@ -7,4 +7,5 @@ export const ERROR_MESSAGES = {
 
 export const OUTPUT_MESSAGES = {
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요\n',
+  PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
 };
