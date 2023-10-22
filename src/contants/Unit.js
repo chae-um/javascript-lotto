@@ -2,6 +2,8 @@ export const UNIT = Object.freeze({
   won: '원',
   amount: '개',
   lottoPrice: 1000,
+  divider: ',',
+  space: ' ',
 });
 
 export const PRIZE = Object.freeze({

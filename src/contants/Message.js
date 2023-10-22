@@ -1,3 +1,4 @@
+import { GAME_OPTION } from './GameOption.js';
 import { PRIZE, UNIT } from './Unit.js';
 
 export const GAME_MESSAGE = Object.freeze({
@@ -21,8 +22,8 @@ export const RESULT_MESSAGE = Object.freeze({
 export const ERROR_MESSAGE = Object.freeze({
   isNotNumber: '[ERROR] 입력한 값이 숫자가 아닙니다.',
   isNotValidMoney: '[ERROR] 값은 천원 단위로 입력해야합니다.',
-  isNotValidDivider: '[ERROR] 로또 번호는 쉼표 단위로 6개 입력해야 합니다.',
-  isNotValidRange: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+  isNotValidDivider: `[ERROR] 로또 번호는 쉼표 단위로 ${GAME_OPTION.pickNumber}개 입력해야 합니다.`,
+  isNotValidRange: `[ERROR] 로또 번호는 ${GAME_OPTION.startNum}부터 ${GAME_OPTION.endNum} 사이의 숫자여야 합니다.`,
   isDuplicationWinningNumber: '[ERROR] 로또 번호 중 중복된 숫자가 있습니다.',
   isDuplicationWinningBonusNumber: '[ERROR] 보너스 번호가 중복된 숫자입니다.',
 });
