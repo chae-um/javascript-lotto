@@ -1,4 +1,20 @@
-import { ERROR_MESSAGE } from '../contants/Message.js';
+import { ERROR_MESSAGE } from "../contants/Message.js";
+
+export function checkMoneyInput(input) {
+  isNumber(input);
+  isValidNumber(input);
+}
+
+export function checkLottoNumbers(input) {
+  isValidDivider(input);
+  isValidLottoNumbers(input);
+  isLottoNumbersDuplication(input);
+}
+
+export function checkLottoBonusNumber(input, winningNumbers) {
+  isValidLottoBonusNumber(input);
+  isLottoBonusNumberDuplication(input, winningNumbers);
+}
 
 function isNumber(input) {
   const check = Number(input);
@@ -16,19 +32,14 @@ function isValidNumber(input) {
   }
 }
 
-export function checkMoneyInput(input) {
-  isNumber(input);
-  isValidNumber(input);
-}
-
 function isValidDivider(input) {
-  if (input.split(',').length !== 6) {
+  if (input.split(",").length !== 6) {
     throw new Error(ERROR_MESSAGE.isNotValidDivider);
   }
 }
 
 function isValidLottoNumbers(input) {
-  const lottoNumbers = input.split(',').map(Number);
+  const lottoNumbers = input.split(",").map(Number);
 
   lottoNumbers.forEach((number) => {
     if (Number.isNaN(number)) {
@@ -41,17 +52,11 @@ function isValidLottoNumbers(input) {
 }
 
 function isLottoNumbersDuplication(input) {
-  const lottoNumbers = new Set(input.split(',').map(Number));
+  const lottoNumbers = new Set(input.split(",").map(Number));
 
   if (lottoNumbers.size !== 6) {
     throw new Error(ERROR_MESSAGE.isDuplicationWinningNumber);
   }
-}
-
-export function checkLottoNumbers(input) {
-  isValidDivider(input);
-  isValidLottoNumbers(input);
-  isLottoNumbersDuplication(input);
 }
 
 function isValidLottoBonusNumber(input) {
@@ -69,9 +74,4 @@ function isLottoBonusNumberDuplication(input, winningNumbers) {
   if (winningNumbers.includes(Number(input))) {
     throw new Error(ERROR_MESSAGE.isDuplicationWinningBonusNumber);
   }
-}
-
-export function checkLottoBonusNumber(input, winningNumbers) {
-  isValidLottoBonusNumber(input);
-  isLottoBonusNumberDuplication(input, winningNumbers);
 }
