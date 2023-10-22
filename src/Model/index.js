@@ -2,17 +2,17 @@ import LottoNumberCalculator from '../utils/LottoNumberCalculator.js';
 import LottoNumberGenerator from '../utils/LottoNumberGenerator.js';
 
 class LottoModel {
-  #lottoNumbers;
+  #userLottoNumbers;
 
   generateLottoNumbers(purchaseAmount) {
     const count = purchaseAmount / 1000;
-    this.#lottoNumbers = LottoNumberGenerator.run(count);
-    return this.#lottoNumbers;
+    this.#userLottoNumbers = LottoNumberGenerator.run(count);
+    return this.#userLottoNumbers;
   }
 
   getWinningResult(lottoNumbers, bonusNumber) {
     const lottoNumberCalculator = new LottoNumberCalculator(
-      this.#lottoNumbers,
+      this.#userLottoNumbers,
       lottoNumbers,
       bonusNumber,
     );
