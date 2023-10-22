@@ -1,11 +1,12 @@
 import { OUTPUT_MESSAGES } from '../constants/Messages.js';
 import Validators from '../utils/validator/index.js';
 import InputView from './InputView.js';
+import OutputView from './OutputView.js';
 
 const View = {
   printLotto(lottoNumbers) {
-    InputView.print(OUTPUT_MESSAGES.PURCHASE_QUANTITY(lottoNumbers.length));
-    lottoNumbers.forEach((lottoNumber) => InputView.print(lottoNumber));
+    OutputView.print(OUTPUT_MESSAGES.PURCHASE_QUANTITY(lottoNumbers.length));
+    lottoNumbers.forEach((lottoNumber) => OutputView.print(lottoNumber));
   },
 
   async readPurchaseAmount() {
